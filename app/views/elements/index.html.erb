@@ -1,0 +1,32 @@
+<!-- check errors -->
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>" style="color:red"><%= value %></div>
+<% end %>
+
+
+<h1>parse a new web</h1>
+ 
+<%= label_tag(:url, "url:") %>
+<%= text_field_tag(:url, "http://www.visual-engin.com") %>
+<%= link_to 'Show_a', elements_a_path(url: ""), :id => 'search_a', :onclick => 'addURLToSeach(this)' %>
+<%= link_to 'Show_img', elements_img_path(url: ""), :id => 'search_img', :onclick => 'addURLToSeach(this)' %>
+
+<h1>list of webs in cache</h1>
+
+<p><%= link_to 'clean cache', elements_path, :method => :delete %></p>
+<table>
+  <tr>
+    <th>url</th>
+    <th>redirect</th>
+    <th>list of 'a'</th>
+    <th>list of 'img'</th>
+  </tr>
+  <% @webs.each do |web| %>
+    <tr>
+      <td><%= web.url %></td>
+      <td><%= web.redirect %></td>
+      <td><%= link_to 'Show_a', elements_a_path(url: web.url) %></td>
+      <td><%= link_to 'Show_img', elements_img_path(url: web.url) %></td>
+    </tr>
+  <% end %>
+</table>

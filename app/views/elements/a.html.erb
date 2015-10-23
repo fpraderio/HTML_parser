@@ -1,0 +1,7 @@
+<%= link_to '<= HTML parser', elements_index_path %>
+<h2><p><%= link_to @web.redirect %></p></h2>
+<ul>
+<% @result.each do |url| %>
+	<li><%= link_to url, url %></li>
+<% end %>
+</ul>
